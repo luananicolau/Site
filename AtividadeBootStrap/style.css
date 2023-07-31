@@ -1,0 +1,13 @@
+body{
+    background: rgb(235, 233, 236);
+    background: linear-gradient(90deg, rgb(221, 218, 222) 0%, rgb(247, 240, 240) 50%, rgb(253, 251, 249) 100%);
+
+
+color: rgb(17, 17, 18);
+}
+.container{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}

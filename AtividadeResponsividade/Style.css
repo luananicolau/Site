@@ -1,0 +1,56 @@
+body{
+    background-image: url(https://images7.alphacoders.com/408/thumb-1920-408397.jpg);
+    background-size: cover;
+    margin: 0;
+}
+.p1{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1px;
+}
+.p1 .titulo{
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.titulo h1{
+    font-size: 80px;
+    color: aliceblue;
+    text-transform: uppercase;
+}
+header{
+    width: 100%;
+    height: 7vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header img{
+    height: 80%;
+}
+header nav{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.link{
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+.hamburguer{
+    display: none;
+}
+@media screen and (max-width:768px) {
+    .hamburguer{
+        display:inline;
+    }
+    header nav{
+        display:none;
+    }
+    
+}

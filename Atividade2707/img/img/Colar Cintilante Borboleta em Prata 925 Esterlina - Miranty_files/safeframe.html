@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://tags.fulllab.com.br/safeframe -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<script src="./url-tld.min.js.download" async=""></script><script src="./js.cookie.min.js.download" async=""></script><script src="./fingerprint2.min.js.download" async=""></script><script id="main-script">
+  (function () {
+    function setCookie(name, value) {
+      var domain  = url("domain");
+      var options = {
+        sameSite: "none", secure: true, expires: 365, domain: "." + domain
+      };
+
+      Cookies.set(name, value, options);
+    }
+
+    function setIdentifiedComponents(identifiedComponents) {
+      var desiredKeys        = ["screenResolution", "timezone", "language", "platform", "adBlock"];
+      var filteredComponents = identifiedComponents.filter(function (component) {
+        return desiredKeys.includes(component.key);
+      });
+
+      filteredComponents.forEach(function (component) {
+        setCookie(component.key, component.value);
+      });
+    }
+
+    function identifyUser() {
+      var options = {
+        fonts: {
+          extendedJsFonts: false
+        }
+      };
+
+      Fingerprint2.getV18(function (hash, components) {
+        setIdentifiedComponents(components);
+        setCookie("fp", hash);
+        setCookie("lastUrl",   document.referrer);
+        setCookie("lastVisit", new Date().getTime());
+      });
+    }
+
+    function loadScript(scriptSrc) {
+      return new Promise(function (resolve, reject) {
+        var script = document.createElement("script");
+            script.src     = document.location.protocol + scriptSrc;
+            script.onload  = resolve;
+            script.onerror = reject;
+            script.async   = true;
+
+        var closest = document.getElementsByTagName("script")[0];
+            closest.parentNode.insertBefore(script, closest);
+      });
+    }
+
+    function idleCallback (callback) {
+      if (typeof (window.requestIdleCallback) === "function") {
+        window.requestIdleCallback(callback, {timeout: 500});
+      } else {
+        setTimeout(callback, 500);
+      }
+    }
+
+    var scripts = [
+      "//cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js",
+      "//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js",
+      "//cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url-tld.min.js"
+    ];
+
+    Promise.all(scripts.map(loadScript)).then(function () {
+      idleCallback(identifyUser)
+    });
+  })();
+</script>
+
+</body></html>
